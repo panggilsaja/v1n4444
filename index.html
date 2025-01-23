@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda - 4ul4v1na</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="about.html">Tentang</a></li>
+                <li><a href="contact.html">Kontak</a></li>
+            </ul>
+        </nav>
+        <h1>Rumah Impian Kita</h1>
+    </header>
+    
+    <center><button onclick="changeBackgroundColor()">Tekan</button></center>
+
+    <main>
+        <section id="welcome">
+            <h2>"Temukan Rumah Impian, Wujudkan Kebahagiaan!"</h2>
+            <p>🏡 Rumah bukan hanya bangunan, tetapi tempat di mana cerita dimulai.</p>
+            <p>✨ Tempat berkumpul bersama keluarga, merajut kebahagiaan, dan menciptakan kenangan indah.
+                ✨ Tempat berkumpul bersama keluarga, merajut kebahagiaan, dan menciptakan kenangan indah.
+                ✨ Hunian yang nyaman, aman, dan asri adalah kunci untuk kehidupan yang harmonis.
+                ✨ Dengan lokasi strategis, desain modern, dan fasilitas lengkap, rumah ini siap menjadi tempat terbaik untuk Anda dan keluarga. </p>
+<p>💖 Karena rumah adalah awal dari segala impian.</p>
+<p>📞 Jangan Tunda! Hubungi Kami Sekarang dan Dapatkan Hunian Terbaik untuk Masa Depan Anda.</p>
+            <img src="https://img.freepik.com/premium-photo/3d-rendering-modern-house-design_712957-113.jpg" class="profile-pic">
+        </section>
+
+        <h3>Daftar Rumah Tersedia</h3>
+        <ul id="house-list"></ul>
+        
+        <h4>Tambah Rumah Baru</h4>
+        <input type="text" id="houseName" placeholder="Nama Rumah">
+        <button onclick="addHouse()">Tambah</button>
+        <button onclick="addHouse()">Hapus</button>
+    </main>
+    
+    <script>
+        function changeBackgroundColor() {
+            document.body.style.backgroundColor = document.body.style.backgroundColor === 'lightblue' ? 'white' : 'lightblue';
+        }
+
+        document.getElementById('houseForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let houseName = document.getElementById('houseName').value;
+            let housePrice = document.getElementById('housePrice').value;
+            if (houseName && housePrice) {
+                let li = document.createElement('li');
+                li.innerHTML = `${houseName} - Rp ${housePrice} <button onclick="editHouse(this)">Edit</button> <button onclick="deleteHouse(this)">Hapus</button>`;
+                document.getElementById('houseList').appendChild(li);
+                document.getElementById('houseForm').reset();
+            }
+        });
+
+        function editHouse(button) {
+            let li = button.parentElement;
+            let newName = prompt("Edit Nama Rumah", li.firstChild.textContent.split(' - ')[0]);
+            let newPrice = prompt("Edit Harga Rumah", li.firstChild.textContent.split(' - ')[1].replace('Rp ', ''));
+            if (newName && newPrice) {
+                li.innerHTML = `${newName} - Rp ${newPrice} <button onclick="editHouse(this)">Edit</button> <button onclick="deleteHouse(this)">Hapus</button>`;
+            }
+        }
+
+        function deleteHouse(button) {
+            button.parentElement.remove();
+        }
+    </script>
+
+    <footer>
+        <p>&copy; 2024 Rumah Impian. Hak Cipta Dilindungi.</p>
+    </footer>
+</body>
+</html>
